@@ -2,6 +2,9 @@
     <Head title="Products" />
     <Frontend>
         <div class="container mx-auto px-4 mt-4">
+            <div v-if="$page.props.flash.message" class="alert bg-green-200 mt-4 mx-auto px-4 py-2 rounded mb-3">
+                {{ $page.props.flash.message }}
+            </div>
             <div class="flex items-center justify-between">
                 <h5 class="text-lg font-semibold">Product Lists</h5>
                 <Link :href="route('products.create')" class="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600">
