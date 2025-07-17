@@ -10,7 +10,7 @@
                         <Link class="px-2 py-1 text-gray-800 hover:text-blue-600" :href="route('home')">Home</Link>
                     </li>
                     <li>
-                        <Link class="px-2 py-1 text-gray-800 hover:text-blue-600" :href="route('about')">About</Link>
+                        <Link class="px-2 py-1 text-gray-800 hover:text-blue-600" :href="route('products.index')">Product</Link>
                     </li>
                     <li>
                         <Link class="px-2 py-1 text-gray-800 hover:text-blue-600" :href="route('contact')">Contact</Link>
