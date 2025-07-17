@@ -18,14 +18,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border-b px-4 py-2">1</td>
-                        <td class="border-b px-4 py-2">Apple</td>
-                        <td class="border-b px-4 py-2">$1.99</td>
+                    <tr v-for="(item, index) in products"
+                        :key="index"
+                    >
+                        <td class="border-b px-4 py-2">{{ item.id }}</td>
+                        <td class="border-b px-4 py-2">{{ item.name }}</td>
+                        <td class="border-b px-4 py-2">${{ item.price }}</td>
                         <td class="border-b px-4 py-2">
-                            <Link :href="route('products.show', 1)" class="whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-gray-500 hover:bg-gray-700">Show</Link>
-                            <Link :href="route('products.edit', 1)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-green-500 hover:bg-green-600">Edit</Link>
-                            <Link :href="route('products.destroy', 1)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-red-500 hover:bg-red-600">Delete</Link>
+                            <Link :href="route('products.show', item.id)" class="whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-blue-500 hover:bg-gray-700">Show</Link>
+                            <Link :href="route('products.edit', item.id)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-green-500 hover:bg-green-600">Edit</Link>
+                            <Link :href="route('products.destroy', item.id)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-red-500 hover:bg-red-600">Delete</Link>
                         </td>
                     </tr>
                 </tbody>
@@ -38,4 +40,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import Frontend from '@/Layouts/FrontendLayout.vue';
+
+defineProps({
+    products: Array,
+})
 </script>
