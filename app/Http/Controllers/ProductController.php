@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Frontend/Product/Create');
     }
 
     /**
@@ -28,7 +29,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'integer', 'max:255'],
+        ]);
+
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+
+
+        return redirect()->route('products.index')->with('success', 'Product Created Successfully!');
     }
 
     /**
