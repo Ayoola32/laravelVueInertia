@@ -44,7 +44,7 @@ class ProductController extends Controller
         ]);
 
 
-        return redirect()->route('products.index')->with('success', 'Product Created Successfully!');
+        return redirect()->route('products.index')->with('message', 'Product Created Successfully!');
     }
 
     /**

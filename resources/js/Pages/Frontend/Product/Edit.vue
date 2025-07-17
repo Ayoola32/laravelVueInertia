@@ -81,8 +81,13 @@
                         </div>
                         <div class="sm:col-span-3">
                             <div class="mt-4">
-                                <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-gray-600">
-                                    Update
+                                <button 
+                                    type="submit" 
+                                    class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-gray-600"
+                                    :disabled="form.processing"
+                                >
+                                <span v-if="form.processing">Updating.....</span>
+                                <span v-else="form.processing">Update</span>
                                 </button>
                             </div>
                         </div>

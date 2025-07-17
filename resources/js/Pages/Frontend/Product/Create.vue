@@ -80,8 +80,13 @@
                         </div>
                         <div class="sm:col-span-3">
                             <div class="mt-4">
-                                <button type="submit" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-gray-600">
-                                    Create
+                                <button 
+                                    type="submit" 
+                                    class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-gray-600"
+                                    :disabled="form.processing"
+                                >
+                                <span v-if="form.processing">Saving.....</span>
+                                <span v-else="form.processing">Create</span>
                                 </button>
                             </div>
                         </div>
