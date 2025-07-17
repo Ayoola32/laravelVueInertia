@@ -5,6 +5,9 @@
             <div v-if="$page.props.flash.message" class="alert bg-green-200 mt-4 mx-auto px-4 py-2 rounded mb-3">
                 {{ $page.props.flash.message }}
             </div>
+            <div v-if="$page.props.flash.warning" class="alert bg-yellow-200 mt-4 mx-auto px-4 py-2 rounded mb-3">
+                {{ $page.props.flash.warning }}
+            </div>
             <div class="flex items-center justify-between">
                 <h5 class="text-lg font-semibold">Product Lists</h5>
                 <Link :href="route('products.create')" class="rounded bg-gray-500 px-4 py-2 text-white hover:bg-gray-600">
@@ -30,7 +33,13 @@
                         <td class="border-b px-4 py-2">
                             <Link :href="route('products.show', item.id)" class="whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-blue-500 hover:bg-gray-700">Show</Link>
                             <Link :href="route('products.edit', item.id)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-green-500 hover:bg-green-600">Edit</Link>
-                            <Link :href="route('products.destroy', item.id)" class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-red-500 hover:bg-red-600">Delete</Link>
+                            <button 
+                                type="submit"
+                                class="ml-2 whitespace-nowrap text-white rounded inline-block px-2 py-1 bg-red-500 hover:bg-red-600"
+                                @click="deleteProduct(item.id)"
+                            >
+                                Delete
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -41,10 +50,23 @@
 
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import Frontend from '@/Layouts/FrontendLayout.vue';
 
 defineProps({
     products: Array,
-})
+});
+
+
+const form = useForm({
+
+});
+
+const deleteProduct = (productId) => {
+    if (confirm('Are you sure you want to delete this data?')) {
+        form.delete(route('products.destroy', productId));
+    }
+}
+
+
 </script>
